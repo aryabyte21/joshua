@@ -6,6 +6,9 @@ import 'package:permission_handler/permission_handler.dart';
 import 'dart:async';
 
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
+
 
 class GlobalVariable {
   static final GlobalKey<NavigatorState> navState = GlobalKey<NavigatorState>();
@@ -27,6 +30,9 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
 }
 
 Future main() async {
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   WidgetsFlutterBinding.ensureInitialized();
 
   await Firebase.initializeApp();
